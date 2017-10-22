@@ -1,0 +1,18 @@
+
+FEN = "4rk2/pp3r2/2p2Q2/3p4/8/1P3P1P/P6K/4R3"
+
+def Fen2_to_string(fen_string):
+    empty_string = ""
+    for i in fen_string:
+        if i.isdigit():
+            for i in range(int(i)):
+                empty_string+='.'
+        else:
+            if i != '/':
+                empty_string+=i
+
+    return empty_string
+
+if __name__ == "__main__":
+    print(function(FEN))
+    
