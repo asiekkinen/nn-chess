@@ -4,7 +4,8 @@ import re
 
 RESOURCES = os.path.join(os.path.dirname(os.path.realpath(__file__)),
                          '../resources/lichess')
-RESOURCE_FILES = [filename for filename in os.listdir(RESOURCES)
+RESOURCE_FILES = [os.path.join(RESOURCES, filename)
+                  for filename in os.listdir(RESOURCES)
                   if filename.endswith('.pgn')]
 
 
