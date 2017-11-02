@@ -2,6 +2,10 @@
 from sklearn.neural_network import MLPRegressor
 import numpy as np
 import game
+try:
+    xrange
+except NameError:
+    xrange = range
 
 
 GAME_GENERATOR = game.generate_games()
