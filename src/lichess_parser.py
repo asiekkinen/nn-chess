@@ -4,17 +4,30 @@ import re
 
 RESOURCES = os.path.join(os.path.dirname(os.path.realpath(__file__)),
                          '../resources/lichess')
-files = ['./lichess_db_standard_rated_2014-01.pgn',
-         './lichess_db_standard_rated_2013-06.pgn',
-         './lichess_db_standard_rated_2013-01.pgn']
+RESOURCE_FILES = [filename for filename in os.listdir(RESOURCES)
+                  if filename.endswith('.pgn')]
 
 
 class LichessParser(object):
-    def __init__(self, filename):
-        self.filename = filename
+    def __init__(self, filepath):
+        """Initialize parser.
+
+        Parameters
+        ----------
+        filepath : string
+            Filepath to a .pgn file.
+        """
+        self.filepath = filepath
 
     def games(self):
-        with open(self.filename, 'rb') as datafile:
+        """Iterator for moves and results of games.
+
+        Yields
+        ------
+        tuple
+            List of moves (strings) and result (string)
+        """
+        with open(self.filepath, 'rb') as datafile:
             for line in datafile:
                 line = line.strip()
                 if not line.startswith("1. ") or "{" in line:
@@ -28,9 +41,3 @@ class LichessParser(object):
                     else:
                         parsed_moves.append(move)
                 yield parsed_moves, result
-
-
-def get_datafiles():
-    files = os.listdir(RESOURCES)
-    return [os.path.join(RESOURCES, filename) for filename in files
-            if filename.endswith("pgn")]
