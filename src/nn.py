@@ -29,7 +29,7 @@ def generate_batch(size):
     X = np.empty((size, 65))
     y = np.empty((size))
     for i in xrange(size):
-        game = GAME_GENERATOR.next()
+        game = next(GAME_GENERATOR)
         fen = game.get_random_board_state()
         X[i] = game.convert_fen_to_array(fen)
         y[i] = game.int_result
