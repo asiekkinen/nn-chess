@@ -72,6 +72,16 @@ class Game(object):
         Requires the play method to be run before."""
         return random.choice(self._positions)
 
+    def get_board_state(self, index):
+        """Get board state specified by index.
+
+        Parameters
+        ----------
+        index : int
+            Index of the move.
+        """
+        return self._positions[index]
+
     def convert_array_to_fen(self, array):
         raise NotImplementedError()
 
